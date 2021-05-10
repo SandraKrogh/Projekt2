@@ -17,6 +17,8 @@ int main(void)
 {
 	sei(); //global interrupt 
 	
+	turnOffLED(5);
+	
 	initInterrupt();
 	initTimer();
 
