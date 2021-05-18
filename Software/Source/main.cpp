@@ -9,6 +9,7 @@
 #include <avr/interrupt.h>
 #include "taendlys.h"
 #include "Init.h"
+#include "Fyldbadekar.h"
 
 int getGlobalSek();
 int sek_= 0;
@@ -16,8 +17,6 @@ int sek_= 0;
 int main(void)
 {
 	sei(); //global interrupt 
-	
-	turnOffLED(5);
 	
 	initInterrupt();
 	initTimer();
@@ -31,7 +30,8 @@ int main(void)
 		else
 		turnOffLED(3);
 		
-		//taendlys();
+		taendlys();
+		
     }
 }
 
@@ -49,7 +49,7 @@ ISR(TIMER1_OVF_vect)
 //til badekaret 
 ISR(INT2_vect) 
 {
-
+	fyldbadekar();
 }
 
 int getGlobalSek()

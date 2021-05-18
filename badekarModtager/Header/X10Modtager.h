@@ -9,7 +9,7 @@
 #ifndef X10MODTAGER_H_
 #define X10MODTAGER_H_
 
-
+char* X10MODTAGER();
 
 
 

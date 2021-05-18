@@ -5,26 +5,40 @@
  *  Author: sandr
  */ 
 #include "computerApp.h"
+#include "taendlys.h"
+#include "zeroCross.h"
+#include <assert.h>
+
+#define F_CPU 16000000;
+#include  <util/delay.h>
+
 
 void taendlys()
 {
+	char startArray[] = {'0','1','0','1','0','1','1','0','/0'}; //tænd
+	char stopArray[] = {'0','1','0','1','1','0','0','1','/0'}; //stop
+	char adresseArray[] = {'0','1','0','1','0','1','1','0','/0'}; //stop
+	
 	int min = getmin();
 	int hour = gethour();
 	
 	int RealTimeSek = getGlobalSek();
 	
-	bool status; 
+	bool status,status2; 
 	status=compareTimeStart(min,hour,RealTimeSek);
 	
 	if(status == true)
 	{
-		sendX10(int, int);
-		
+		sendX10(adresseArray, startArray);
 	}
 	
-	wait();
 	
-	bool compareTimeStop(min,hour,RealTimeSek);
+	status2 = compareTimeStop(min,hour,RealTimeSek);
+	if(status2 == true)
+	{
+		sendX10(adresseArray, stopArray);
+	}
+	
 }
 
 bool compareTimeStart(int min, int hour, int RealTimeSek)
@@ -48,20 +62,9 @@ bool compareTimeStart(int min, int hour, int RealTimeSek)
 		return false;
 }
 
-void wait()
-{
-
-}
-
-//wait function
-ISR(TIMER3_OVF_vect)
-{
-
-}
-
 bool compareTimeStop(int min, int hour, int RealTimeSek)
 {
-	int RealTimeMin, WakeUpMin;
+	int RealTimeMin, stopWakeUpMin = 30;
 	
 	RealTimeMin = RealTimeSek/60;
 	
@@ -80,28 +83,5 @@ bool compareTimeStop(int min, int hour, int RealTimeSek)
 	return false;
 }
 
-sendX10(int adresse, int data)
-{
-	char buffer[16];
-	//manchester kode ind i buffer 
-	int counter = 0;
-	int np_counter = g_counter //skal erklæres 
-	
-	while  counter < 16
-	{
-		while np_counter == g_counter 
-		{
-			
-		}
-		assert(np_counter+1 == g_counter)
-		
-		np_counter = g_counter;
-		// kan sende noget ud 
-		
-		char c = buffer[counter++];
-		//sætte ben højt, hvis c = 1
-		 
-		
-	}  
-	
-}
+
+

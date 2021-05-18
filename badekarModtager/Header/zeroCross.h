@@ -10,7 +10,7 @@
 #define ZEROCROSS_H_
 
 
-
+void zeroCrossInit();
 
 
 #endif /* ZEROCROSS_H_ */

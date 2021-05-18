@@ -6,15 +6,34 @@
  */ 
 
 #include <avr/io.h>
+#include "X10Modtager.h"
 
 
 int main(void)
 {
  sei()
+ initInterrupt();
+ initPort();
+ 
+ char modtagetdata[9];
+ char startArray[] = {'0','1','1','0','1','0','1','0','/0'}; //tænd
+ char stopArray[] = {'1','0','0','1','1','0','1','0','/0'}; //stop
  
     /* Replace with your application code */
     while (1) 
     {
+		 modtagetdata = X10MODTAGER();
+		 
+		if(modtagetdata = startArray)
+		{
+			turnOnLED(2);
+		}
+		
+		if(modtagetdata = stopArray)
+		{
+			turnOffLED(2);
+		}
+		
     }
 }
 

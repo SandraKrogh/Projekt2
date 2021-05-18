@@ -26,17 +26,24 @@ void initInterrupt()
 	EIMSK |= 0b00000100;
 	EICRA = 0b00100000;
 	
-	//Lys interrupt 0
+	//Lys interrupt 0 zeroCross
 	EICRA = 0b00000011;
 	EIMSK |= 0b00000001;
 	
-	//Lys interrupt 3
+	//Lys interrupt 3 wait funktion
 	EICRA = 0b00000011;
 	EIMSK |= 0b00001000;
 	
-	//enables timer 3 interrupt 
-	TIMSK3 = 0b00000001;
+	//enables timer 3 interrupt wait funktion
+	TIMSK3 = 0b00001000;
 	
-	//enables timer 1 interrupt 
+	//enables timer 0 interrupt 
 	TIMSK1 = 0b00000001;  //interrupt på overflow 
 }
+
+void initPort()
+ {
+	 //Port til udgang, x10 sender
+	 DDRA = 0xFF;
+	 PORTA = 00000000; 
+ }

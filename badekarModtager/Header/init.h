@@ -11,6 +11,7 @@
 
 
 void initInterrupt();
+void initPort();
 
 
 

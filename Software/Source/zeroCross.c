@@ -11,18 +11,9 @@ int g_counter = 0;
 void zeroCrossInit()
 {
 	DDRD = 0; //laver til indgang 
-	
-	//interrupt initering
-	EICRA = 0b00000011; 
-	EIMSK |= 0b00000001;
-	
-	if(PIND &= 0b00000001)
-	{
-		g_counter++;
-	}
 }
 
-ISR
+ISR(INT0_vect)
 {
-	
+	g_counter++;
 }

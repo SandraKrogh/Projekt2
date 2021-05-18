@@ -10,7 +10,7 @@
 #define SENDX10_H_
 
 
-
+void sendX10(char*,char*);
 
 
 #endif /* SENDX10_H_ */

@@ -146,10 +146,16 @@
     <Compile Include="Header\computerApp.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\Fyldbadekar.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\Init.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\LED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\sendX10.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\taendlys.h">
@@ -161,6 +167,9 @@
     <Compile Include="Source\computerApp.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Source\Fyldbadekar.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Source\init.c">
       <SubType>compile</SubType>
     </Compile>
@@ -168,6 +177,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\sendX10.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\taendlys.c">
