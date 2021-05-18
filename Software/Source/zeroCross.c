@@ -6,6 +6,7 @@
  */ 
 #include "zeroCross.h"
 
+int g_counter = 0;
 
 void zeroCrossInit()
 {
@@ -17,6 +18,11 @@ void zeroCrossInit()
 	
 	if(PIND &= 0b00000001)
 	{
-		
+		g_counter++;
 	}
+}
+
+ISR
+{
+	
 }

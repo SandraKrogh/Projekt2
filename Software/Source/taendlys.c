@@ -18,8 +18,8 @@ void taendlys()
 	
 	if(status == true)
 	{
-		DDRC = 0xFF;
-		PORTC |= 00000010;
+		sendX10(int, int);
+		
 	}
 	
 	wait();
@@ -80,3 +80,28 @@ bool compareTimeStop(int min, int hour, int RealTimeSek)
 	return false;
 }
 
+sendX10(int adresse, int data)
+{
+	char buffer[16];
+	//manchester kode ind i buffer 
+	int counter = 0;
+	int np_counter = g_counter //skal erklæres 
+	
+	while  counter < 16
+	{
+		while np_counter == g_counter 
+		{
+			
+		}
+		assert(np_counter+1 == g_counter)
+		
+		np_counter = g_counter;
+		// kan sende noget ud 
+		
+		char c = buffer[counter++];
+		//sætte ben højt, hvis c = 1
+		 
+		
+	}  
+	
+}

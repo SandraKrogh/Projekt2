@@ -5,7 +5,6 @@
  * Author : sandr
  */ 
 
-//TESTERSILJEGITHUB
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "taendlys.h"
