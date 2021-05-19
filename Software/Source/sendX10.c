@@ -22,7 +22,7 @@ sendX10(char* adresse, char* data)
 	{
 		PORTA &= 11111110
 		
-		while x10_counter == g_counter //tjekker om der er kommer zeroCross
+		while x10_counter == g_counter //tjekker om der er kommet zeroCross
 		{
 			
 		}

@@ -34,6 +34,7 @@ void taendlys()
 	
 	
 	status2 = compareTimeStop(min,hour,RealTimeSek);
+	
 	if(status2 == true)
 	{
 		sendX10(adresseArray, stopArray);
