@@ -27,7 +27,7 @@ char* X10MODTAGER()
 		}
 		assert(x10_counter+1 == g_counter)
 		
-		x10_counter = g_counter;'
+		x10_counter = g_counter;
 		
 		if(PINA &= 00000001)
 		{

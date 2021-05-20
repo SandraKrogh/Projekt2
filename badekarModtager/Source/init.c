@@ -11,7 +11,7 @@ void initInterrupt()
 {
 	 //enables interrupt 0
 	 EIMSK |= 0b00000001;
-	 EICRA = 0b00000011;
+	 EICRA = 0b00000011; 
 }
 
 void initPort()

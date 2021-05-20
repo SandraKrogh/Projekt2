@@ -10,6 +10,8 @@
 
 sendX10(char* adresse, char* data)
 {	
+	//send startsekvens 
+	
 	char buffer[17] = strcat(adresse,data);
 	
 	//manchester kode ind i buffer
@@ -37,7 +39,8 @@ sendX10(char* adresse, char* data)
 		{
 			PORTA |= 00000001;
 		}
-		
 		counter++;
 	}
+	
+	//send slutsekvens
 }

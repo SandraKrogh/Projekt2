@@ -23,17 +23,7 @@ int main(void)
     while (1) 
     {
 		 modtagetdata = X10MODTAGER();
-		 
-		if(modtagetdata = startArray)
-		{
-			turnOnLED(2);
-		}
-		
-		if(modtagetdata = stopArray)
-		{
-			turnOffLED(2);
-		}
-		
     }
 }
+
 
