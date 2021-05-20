@@ -10,7 +10,8 @@
 #define TID_H_
 
 
-
+bool compareTimeStart(int, int, int);
+bool compareTimeStoop(int, int, int);
 
 
 #endif /* TID_H_ */

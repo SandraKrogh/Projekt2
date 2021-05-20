@@ -10,19 +10,24 @@
 #include "taendlys.h"
 #include "Init.h"
 #include "Fyldbadekar.h"
+#include "Tid.h"
 
 int getGlobalSek();
-int sek_= 0;
+int sek_= 0; //global variabel til sekund tæller
+int times = 10;
+int increaseTime=0;
 
 int main(void)
 {
-	sei(); //global interrupt 
+	sei(); //enable global interrupt 
 	
 	initInterrupt();
 	initTimer();
+	initPort();
 
     /* Replace with your application code */
-    while (1) 
+	
+	while (1) 
     {
 		//test af sekund tæller
 		if(sek_ %2 == 0)
@@ -30,10 +35,34 @@ int main(void)
 		else
 		turnOffLED(3);
 		
-		taendlys();
+		int min = getmin();
+		int hour = gethour();
 		
-		tjeklys();
+		int RealTimeSek = getGlobalSek();
+			
+		bool status;
 		
+		status=compareTimeStart(min,hour,RealTimeSek);
+			
+		if(status == true)
+		{
+			taendlys();
+			int increaseTime = RealTimeSek;
+			times=0;
+		}
+		
+		if(RealTimeSek == increaseTime + 1800  && times < 6 ) //1800 er en random værdi
+		{
+			increase();
+			increaseTime += 1800; 
+			times++; 
+		}
+		
+		if(times == 6)
+		{
+			sluklys();
+			times = 10;
+		}
     }
 }
 

@@ -15,5 +15,5 @@ int gethour()const
 }
 int getmin()const
 {
-	return min_;
+	'return min_;
 }

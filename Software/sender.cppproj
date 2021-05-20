@@ -158,7 +158,10 @@
     <Compile Include="Header\sendX10.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\taendlys.h">
+    <Compile Include="Header\lys.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Tid.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\zeroCross.h">
@@ -182,7 +185,10 @@
     <Compile Include="Source\sendX10.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\taendlys.c">
+    <Compile Include="Source\lys.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Tid.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\zeroCross.c">

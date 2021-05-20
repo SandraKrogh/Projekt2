@@ -9,9 +9,8 @@
 #ifndef TAENDLYS_H_
 #define TAENDLYS_H_
 
-bool compareTimeStart(int,int,int);
-void wait();
-bool compareTimeStop(int, int,int);
 void taendlys();
+void increaseLys();
+void sluklys();
 
 #endif /* TAENDLYS_H_ */
