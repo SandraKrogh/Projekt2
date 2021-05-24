@@ -8,22 +8,43 @@
 #include <avr/io.h>
 #include "LysApp.h"
 
+#define F_CPU 16000000;
+#include  <util/delay.h>
+
+
 int main(void)
 {
-   	DDRC = 0;
-   	if (PINC == 00000010);
-   	{
-	   	start();
-   	}
-   	
-   	increase
+	int intensityCounter = 0;
+	int increase = 100;
+	
+	initLEDport();
+	
+	while(1)
+	{
 	 
+	if(strcmp(buffer == startArray))
+	 {
+		intensityCounter = 1; 
+	 }
 	 
+	 if(intensityCounter == 1)
+	 {
+		 toggleLED(2);
+		 _delay_ms(increase);
+	 }
+	 
+	 if(strcmp(buffer == stopArray))
+	 {
+		 turnOffLED(2);
+		 intensityCounter = 0;
+	 }
+	 
+	 if(strcmp(buffer == increaseArray))
+	 {
+		 increase -= 10;
+	 }
+	}
    	
    	return 0;
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
 }
 

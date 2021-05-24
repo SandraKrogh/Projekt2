@@ -113,9 +113,6 @@
     <Compile Include="Header\init.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\X10Modtager.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Header\zeroCross.h">
       <SubType>compile</SubType>
     </Compile>
@@ -123,9 +120,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\init.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\X10Modtager.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\zeroCross.c">
