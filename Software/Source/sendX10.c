@@ -4,35 +4,41 @@
  * Created: 18-05-2021 10:09:40
  *  Author: sandr
  */ 
-#include "sendX10.h"
 #include <string.h>
-
+#include <stdio.h>
+#include <avr/io.h>
+#include <assert.h>
+int g_counter = 0;
 
 sendX10(char* adresse, char* data)
 {	
 	//send startsekvens 
+	char buffer2[18] = {0};
 	
-	char buffer[17] = strcat(adresse,data);
+	strcpy(buffer2,adresse); 
+	
+	strcat(buffer2,data);
 	
 	//manchester kode ind i buffer
 	int counter = 0;
 	int x10_counter = 0;
 	
-	x10_counter = g_counter
 	
-	while  counter < 16 //tjekker om alle tegn er sendt
+	while  (counter < 16) //tjekker om alle tegn er sendt
 	{
-		PORTA &= 11111110
+		PORTA &= 11111110;
 		
-		while x10_counter == g_counter //tjekker om der er kommet zeroCross
+		while (x10_counter == g_counter) //tjekker om der er kommet zeroCross
 		{
 			
 		}
-		assert(x10_counter+1 == g_counter)
+		assert(x10_counter+1 == g_counter);
 		
 		x10_counter = g_counter;
 		
-		char c = buffer[counter];
+		char c;
+		
+		c = buffer2[counter];
 		
 		//sætte ben højt, hvis c = 1
 		if(c==1)
@@ -41,6 +47,10 @@ sendX10(char* adresse, char* data)
 		}
 		counter++;
 	}
-	
-	//send slutsekvens
+}
+
+//zero cross
+ISR(INT0_vect)
+{
+	g_counter++;
 }

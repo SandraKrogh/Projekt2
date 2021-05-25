@@ -14,36 +14,56 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdio.h>
+#include <string.h>
 
-#include "taendlys.h"
-#include "Init.h"
-#include "Fyldbadekar.h"
-#include "Tid.h"
-#include "LED.h"
+#include "Header/Fyldbadekar.h"
+#include "Header/LED.h" 
+#include "Header/sendX10.h"
+#include "Header/Tid.h"
+#include "Header/lys.h"
+#include "Header/Init1.h"
 
 int getGlobalSek();
-int sek_= 0; //global variabel til sekund tæller
-int times = 10;
-int increaseTime=0;
+
+//global variable declaration 
+volatile int sek= 0; 
+int times= 0;
+int increaseTime = 0;
+
+//til test delay
+#define F_CPU 16000000
+#include  <util/delay.h>
 
 int main(void)
-{
-	sei(); //enable global interrupt 
-	
-	initInterrupt();
-	initTimer();
+{	
+	initLEDport();
+	//initInterrupt();
+	//initTimer();
 	initPort();
 	
+	//Lys Timer1 initiering
+	//normal mode
+	TCNT1 = 63974; //har før haft 49912
+	TCCR1A = 0b00000000;
+	TCCR1B = 0b00000101; //prescale 1024
+	
+	sei();//enable global interrupt 
 
     /* Replace with your application code */
 	
-	while (1) 
+	while(1) 
     {
+		toggleLED(7);
+		_delay_ms(1000);
 		//test af sekund tæller
-		if(sek_ %2 == 0)
-// 		turnOnLED(3);
+//  		if(sek %2 == 0)
+//  		{
+//  		turnOnLED(3);
+//  		_delay_ms(100);
+//  		}
 // 		else
-// 		turnOffLED(3);
+//  		turnOffLED(3);
 		
 // 		int min = getmin();
 // 		int hour = gethour();
@@ -79,11 +99,11 @@ int main(void)
 //real time
 ISR(TIMER1_OVF_vect)
 { 
-  sek_++;
-  
-  if( sek_ > 86400)
+  sek++;
+  if( sek > 10) //skal være 86400
   {
-	  sek_=0;
+	 toggleLED(3);
+	 sek=0;
   }
 }
 
@@ -93,7 +113,8 @@ ISR(INT2_vect)
 	fyldbadekar();
 }
 
+
 int getGlobalSek()
 {
-	return sek_;
+	return sek;
 }

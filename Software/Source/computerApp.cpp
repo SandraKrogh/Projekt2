@@ -7,13 +7,11 @@
 
 int min_, hour_;
 
-#include "computerApp.h"
-
-int gethour()const
+int gethour()
 {
 	return hour_;
 }
-int getmin()const
+int getmin()
 {
-	'return min_;
+	return min_;
 }

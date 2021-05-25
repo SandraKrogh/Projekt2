@@ -4,8 +4,7 @@
  * Created: 10-05-2021 13:21:49
  *  Author: sandr
  */ 
-
-#include "init.h"
+#include <avr/io.h>
 
 void initInterrupt()
 {
@@ -19,4 +18,5 @@ void initPort()
 	//Port til indgange, x10 modtager
 	DDRA = 0;
 	PINA = 00000000;
+	
 }

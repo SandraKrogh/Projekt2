@@ -6,5 +6,3 @@ main.c
 
 Source\LED.c
 
-Source\zeroCross.c
-

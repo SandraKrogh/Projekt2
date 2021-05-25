@@ -122,9 +122,6 @@
     <Compile Include="Source\LED.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\zeroCross.c">
-      <SubType>compile</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Header" />

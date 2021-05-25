@@ -113,6 +113,9 @@
     <Compile Include="Header\init.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\LED.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\zeroCross.h">
       <SubType>compile</SubType>
     </Compile>

@@ -4,18 +4,17 @@
  * Created: 18-05-2021 10:59:28
  *  Author: sandr
  */ 
-
-#include "zeroCross.h"
+#include <avr/io.h>
 #include <string.h>
 
 int counter = 0;
 char startArray[12] = {'1','1','1','0','0','1','1','0','1','0','1','0','/0'}; //tænd
 char stopArray[12] = {'1','1','1','0','1','0','0','1','1','0','1','0','/0'}; //stop
 char array[16] = {'1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0'}; //startsekvens
+char buffer[12]; 
 
 ISR(INT0_vect)
 {
-	char buffer[12]; 
 	
 	if(PINA == 00000001) //hvis 1
 	{
@@ -38,12 +37,12 @@ ISR(INT0_vect)
 		counter--; 	
 	}
 
-	if(strcmp(buffer == startArray))
+	if(strcmp(buffer,startArray))
 	{
 		turnOnLED(2);
 	}
 	
-	if(strcmp(buffer == stopArray))
+	if(strcmp(buffer,stopArray))
 	{
 		turnOffLED(2);
 	}

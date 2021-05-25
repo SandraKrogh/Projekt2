@@ -11,6 +11,6 @@
 
 void initTimer();
 void initInterrupt();
-
+void initPort();
 
 #endif /* INIT_H_ */

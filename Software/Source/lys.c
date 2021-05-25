@@ -4,12 +4,9 @@
  * Created: 04-05-2021 14:40:16
  *  Author: sandr
  */ 
-#include "computerApp.h"
-#include "taendlys.h"
-#include "zeroCross.h"
 #include <assert.h>
 
-#define F_CPU 16000000;
+#define F_CPU 16000000
 #include  <util/delay.h>
 
 void taendlys()

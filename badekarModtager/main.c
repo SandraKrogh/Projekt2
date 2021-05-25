@@ -6,17 +6,23 @@
  */ 
 
 #include <avr/io.h>
-#include "X10Modtager.h"
+#include <avr/interrupt.h>
+#include <stdio.h>
+#include "Header/init.h"
 
 
 int main(void)
 {
- sei()
+ 
  initInterrupt();
  initPort();
- char modtagetdata[9];
- char startArray[] = {'0','1','1','0','1','0','1','0','/0'}; //tænd
- char stopArray[] = {'1','0','0','1','1','0','1','0','/0'}; //stop
+ 
+ sei();
+ 
+//  char modtagetdata[9];
+//  char startArray[] = {'0','1','1','0','1','0','1','0','/0'}; //tænd
+//  char stopArray[] = {'1','0','0','1','1','0','1','0','/0'}; //stop
+	 
 }
 
 
