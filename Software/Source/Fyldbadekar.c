@@ -11,13 +11,14 @@
 void fyldbadekar()
 {
 	
-	char Adresse[] = {'0','1','0','1','1','0','0','1','/0'};
-	char startFunktion[] = {'0','1','0','1','0','1','1','0','/0'};
-	char stopFunktion[] = {'0','1','0','1','1','0','0','1','/0'};
+	toggleLED(7);
+	char Adresse[] = {'0','1','0','1','1','0','0','1'};
+	char startFunktion[] = {'0','1','0','1','0','1','1','0'};
+	char stopFunktion[] = {'0','1','0','1','1','0','0','1'};
 	
 	sendX10(Adresse,startFunktion); //tænd 
 	
-	_delay_ms(4000);
+	_delay_ms(500);
 	
 	sendX10(Adresse,stopFunktion); //sluk
 }

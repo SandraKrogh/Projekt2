@@ -1,15 +1,17 @@
+/*
+ * Uart.c
+ *
+ * Created: 18-11-2020 10:23:12
+ *  Author: Silje
+ */ 
 
-/************************************************
-* "uart.c":                                     *
-* Implementation file for Mega2560 UART driver. *
-* Using UART 0.                                 *
-* Henning Hargaard, 5/4 2019                    *
-*************************************************/
 #include <avr/io.h>
 #include <stdlib.h>
 
 // Target CPU frequency
 #define XTAL 16000000
+
+//Obs her tælles fra bit 0-7 (dvs bit 2 er det 3. bit)
 
 /*************************************************************************
 UART 0 initialization:
@@ -20,16 +22,51 @@ UART 0 initialization:
     No interrupts enabled.
     Number of Stop Bits = 1.
     No Parity.
+    Data bits = 8.
 *************************************************************************/
-void InitUART(unsigned long Baudrate, unsigned char Databit)
+void InitUART(unsigned long BaudRate, unsigned char DataBit)
 {
- if ((Baudrate>=300) && (Baudrate < 115200) && (Databit >5) && (Databit <8))
- {
-	  UCSR0A = 0b00100000;
-	  UCSR0B = 0b00011000;
-	  UCSR0C = (Databit-5)<<1;
-	  UBRR0 = (XTAL+(8*Baudrate))/(16*Baudrate)-1;
- }
+	
+	if(BaudRate>=300 && BaudRate<=115200 && DataBit>=5 && DataBit<=8)
+	{
+		UCSR0A = 0b00100000; //default clock
+	
+   //Asynkron mode: Bit 6 & 7 =0
+   //Ingen paritet: bit 4 & 5 =0
+   //1 stop bit: bit bit 3 =0
+   
+   //if-loop, der bestemmer antal databits (5-8 - plads 1 og 0):
+   if(DataBit == 5)
+   {
+	   UCSR0C = 0b00000000;
+   }
+   
+   if(DataBit == 6)
+   {
+	   UCSR0C = 0b00000010;
+   }
+   
+   if(DataBit == 7)
+   {
+	   UCSR0C = 0b00000100;
+   }
+   
+   if(DataBit == 8)
+   {
+	   UCSR0C = 0b00000110;
+   }
+  
+   
+   //Ingen interrupts: bit 5, 6 & 7 =0
+   //RX enable - tænder for modtager: bit 4 =1
+   //TX enable - tænder for sender: bit 3 =1
+   //Uanset hvilket antal databits der vælges er bit 2 =0
+   UCSR0B = 0b00011000;
+   
+   //Opsætning af Baud Rate (benytter formlen):
+   UBRR0 = (16000000/(16*BaudRate))-1;
+	}
+   
 }
 
 /*************************************************************************
@@ -38,6 +75,8 @@ void InitUART(unsigned long Baudrate, unsigned char Databit)
 *************************************************************************/
 unsigned char CharReady()
 {
+   //Tjekker om der er kommet ny data
+   //Bit 7 i register UCSRnA er 1 når der er ny data
    return UCSR0A & (1<<7);
 }
 
@@ -47,9 +86,15 @@ Then this character is returned.
 *************************************************************************/
 char ReadChar()
 {
-  while((UCSR0A & 0b10000000)==0)
-  {}
-   return UDR0; //returner når det er rigtig 
+	
+	//Afvent ny data:
+   while((UCSR0A & (1<<7)) == 0)
+   {
+	   
+   }
+   //Ny data er kommet, så returner dataen
+   return UDR0;
+   
 }
 
 /*************************************************************************
@@ -60,9 +105,15 @@ Parameter :
 *************************************************************************/
 void SendChar(char Tegn)
 {
-   while((UCSR0A & 0b00100000)==0)
-   {}
-	 UDR0=Tegn;
+   //Afvent fri bane
+   //Når bit 5 i UCSR0A er 1 er der fri bane
+   while((UCSR0A & 0b00100000) == 0)
+   {
+	   
+   }
+   //Skriver tegnet i vores sende-register:
+   UDR0 = Tegn;
+   
 }
 
 /*************************************************************************
@@ -72,10 +123,14 @@ Parameter:
 *************************************************************************/
 void SendString(char* Streng)
 {
-   while( *Streng !=0)
+   
+   int i = 0;
+   //Når strengen ikke er 0
+   while(Streng[i] != 0)
    {
-	   SendChar(*Streng);
-	   Streng++;
+	   //Udskriv det som pointeren peger på
+	   SendChar(Streng[i]);
+	   i++;
    }
 }
 
@@ -88,12 +143,17 @@ Parameter:
 *************************************************************************/
 void SendInteger(int Tal)
 {
-  char myarray[10];
+   // <---- Skriv din kode her
    
-   itoa(Tal, myarray,10);
-   
-   SendString(myarray);
+   char myArray[10] = {0};
+	   
+	   
+	itoa(Tal,myArray,10);
+	
+	SendString(myArray);
+	
+	
+	   
 }
 
 /************************************************************************/
-

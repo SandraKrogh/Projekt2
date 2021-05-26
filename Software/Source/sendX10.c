@@ -8,12 +8,18 @@
 #include <stdio.h>
 #include <avr/io.h>
 #include <assert.h>
-int g_counter = 0;
+#include <avr/interrupt.h>
+
+//til test delay
+#define F_CPU 16000000
+#include  <util/delay.h>
+
+volatile unsigned int g_counter = 0;
 
 sendX10(char* adresse, char* data)
 {	
 	//send startsekvens 
-	char buffer2[18] = {0};
+	char buffer2[16] = {0};
 	
 	strcpy(buffer2,adresse); 
 	
@@ -22,7 +28,7 @@ sendX10(char* adresse, char* data)
 	//manchester kode ind i buffer
 	int counter = 0;
 	int x10_counter = 0;
-	
+	g_counter = 0;
 	
 	while  (counter < 16) //tjekker om alle tegn er sendt
 	{
@@ -30,11 +36,10 @@ sendX10(char* adresse, char* data)
 		
 		while (x10_counter == g_counter) //tjekker om der er kommet zeroCross
 		{
-			
 		}
-		assert(x10_counter+1 == g_counter);
+		//assert(x10_counter+1 == g_counter);
 		
-		x10_counter = g_counter;
+ 		x10_counter = g_counter;
 		
 		char c;
 		
@@ -45,6 +50,15 @@ sendX10(char* adresse, char* data)
 		{
 			PORTA |= 00000001;
 		}
+
+		//sætte ben højt, hvis c = 0
+		if(c==0)
+		{
+			PORTA &= 11111110;
+		}
+		
+		SendChar(c);
+
 		counter++;
 	}
 }
@@ -52,5 +66,7 @@ sendX10(char* adresse, char* data)
 //zero cross
 ISR(INT0_vect)
 {
+	toggleLED(2);
 	g_counter++;
 }
+

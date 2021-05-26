@@ -37,13 +37,13 @@ int main(void)
 	 
 	 if(intensityCounter == 1)
 	 {
-		 toggleLED(2);
+		// toggleLED(2);
 		 wait(increase);
 	 }
 	 
 	 if(strcmp(buffer,stopArray)==0)
 	 {
-		 turnOffLED(2);
+		// turnOffLED(2);
 		 intensityCounter = 0;
 	 }
 	 

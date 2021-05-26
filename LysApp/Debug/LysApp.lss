@@ -3,31 +3,31 @@ LysApp.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000026  00800200  000001fc  00000290  2**0
+  0 .data         00000026  00800200  000001b8  0000024c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001fc  00000000  00000000  00000094  2**1
+  1 .text         000001b8  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000d  00800226  00800226  000002b6  2**0
+  2 .bss          0000000d  00800226  00800226  00000272  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000002b6  2**0
+  3 .comment      00000030  00000000  00000000  00000272  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002e8  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002a4  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000070  00000000  00000000  00000328  2**0
+  5 .debug_aranges 00000070  00000000  00000000  000002e4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000010a4  00000000  00000000  00000398  2**0
+  6 .debug_info   00001064  00000000  00000000  00000354  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d98  00000000  00000000  0000143c  2**0
+  7 .debug_abbrev 00000d98  00000000  00000000  000013b8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000004ff  00000000  00000000  000021d4  2**0
+  8 .debug_line   000004f3  00000000  00000000  00002150  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000bc  00000000  00000000  000026d4  2**2
+  9 .debug_frame  000000bc  00000000  00000000  00002644  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000063e  00000000  00000000  00002790  2**0
+ 10 .debug_str    0000063e  00000000  00000000  00002700  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000268  00000000  00000000  00002dce  2**0
+ 11 .debug_loc    0000025c  00000000  00000000  00002d3e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000068  00000000  00000000  00003036  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00002f9a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -162,7 +162,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ec ef       	ldi	r30, 0xFC	; 252
+  fa:	e8 eb       	ldi	r30, 0xB8	; 184
   fc:	f1 e0       	ldi	r31, 0x01	; 1
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -187,7 +187,7 @@ Disassembly of section .text:
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	12 d0       	rcall	.+36     	; 0x144 <main>
- 120:	6b c0       	rjmp	.+214    	; 0x1f8 <_exit>
+ 120:	49 c0       	rjmp	.+146    	; 0x1b4 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -229,7 +229,7 @@ int main(void)
 	int increase = 100;
 	
 	initLEDport();
- 144:	2e d0       	rcall	.+92     	; 0x1a2 <initLEDport>
+ 144:	2a d0       	rcall	.+84     	; 0x19a <initLEDport>
 char array[16] = {'1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0'}; //startsekvens
 
 int main(void)
@@ -250,7 +250,7 @@ int main(void)
 	 
 	 if(intensityCounter == 1)
 	 {
-		 toggleLED(2);
+		// toggleLED(2);
 		 wait(increase);
  14e:	cc 24       	eor	r12, r12
  150:	c3 94       	inc	r12
@@ -259,7 +259,7 @@ int main(void)
 	 
 	 if(strcmp(buffer,stopArray)==0)
 	 {
-		 turnOffLED(2);
+		// turnOffLED(2);
 		 intensityCounter = 0;
  154:	e1 2c       	mov	r14, r1
  156:	f1 2c       	mov	r15, r1
@@ -273,7 +273,7 @@ int main(void)
  15a:	72 e0       	ldi	r23, 0x02	; 2
  15c:	86 e2       	ldi	r24, 0x26	; 38
  15e:	92 e0       	ldi	r25, 0x02	; 2
- 160:	42 d0       	rcall	.+132    	; 0x1e6 <strcmp>
+ 160:	20 d0       	rcall	.+64     	; 0x1a2 <strcmp>
  162:	89 2b       	or	r24, r25
  164:	19 f0       	breq	.+6      	; 0x16c <main+0x28>
 	 {
@@ -284,129 +284,70 @@ int main(void)
  166:	c1 30       	cpi	r28, 0x01	; 1
  168:	d1 05       	cpc	r29, r1
 	 {
-		 toggleLED(2);
- 16a:	31 f4       	brne	.+12     	; 0x178 <main+0x34>
- 16c:	82 e0       	ldi	r24, 0x02	; 2
+		// toggleLED(2);
 		 wait(increase);
- 16e:	2c d0       	rcall	.+88     	; 0x1c8 <toggleLED>
- 170:	c8 01       	movw	r24, r16
- 172:	d8 df       	rcall	.-80     	; 0x124 <wait>
- 174:	cc 2d       	mov	r28, r12
- 176:	dd 2d       	mov	r29, r13
+ 16a:	21 f4       	brne	.+8      	; 0x174 <main+0x30>
+ 16c:	c8 01       	movw	r24, r16
+ 16e:	da df       	rcall	.-76     	; 0x124 <wait>
+ 170:	cc 2d       	mov	r28, r12
+ 172:	dd 2d       	mov	r29, r13
 	 }
 	 
 	 if(strcmp(buffer,stopArray)==0)
- 178:	6c e0       	ldi	r22, 0x0C	; 12
- 17a:	72 e0       	ldi	r23, 0x02	; 2
- 17c:	86 e2       	ldi	r24, 0x26	; 38
- 17e:	92 e0       	ldi	r25, 0x02	; 2
- 180:	32 d0       	rcall	.+100    	; 0x1e6 <strcmp>
- 182:	89 2b       	or	r24, r25
+ 174:	6c e0       	ldi	r22, 0x0C	; 12
+ 176:	72 e0       	ldi	r23, 0x02	; 2
+ 178:	86 e2       	ldi	r24, 0x26	; 38
+ 17a:	92 e0       	ldi	r25, 0x02	; 2
+ 17c:	12 d0       	rcall	.+36     	; 0x1a2 <strcmp>
+ 17e:	89 2b       	or	r24, r25
+ 180:	11 f4       	brne	.+4      	; 0x186 <main+0x42>
 	 {
-		 turnOffLED(2);
- 184:	21 f4       	brne	.+8      	; 0x18e <main+0x4a>
- 186:	82 e0       	ldi	r24, 0x02	; 2
- 188:	10 d0       	rcall	.+32     	; 0x1aa <turnOffLED>
+		// turnOffLED(2);
 		 intensityCounter = 0;
- 18a:	ce 2d       	mov	r28, r14
+ 182:	ce 2d       	mov	r28, r14
+ 184:	df 2d       	mov	r29, r15
 	 }
 	 
 	 if(strcmp(buffer,increaseArray)==0)
- 18c:	df 2d       	mov	r29, r15
- 18e:	60 e0       	ldi	r22, 0x00	; 0
- 190:	72 e0       	ldi	r23, 0x02	; 2
- 192:	86 e2       	ldi	r24, 0x26	; 38
- 194:	92 e0       	ldi	r25, 0x02	; 2
- 196:	27 d0       	rcall	.+78     	; 0x1e6 <strcmp>
- 198:	89 2b       	or	r24, r25
- 19a:	f1 f6       	brne	.-68     	; 0x158 <main+0x14>
+ 186:	60 e0       	ldi	r22, 0x00	; 0
+ 188:	72 e0       	ldi	r23, 0x02	; 2
+ 18a:	86 e2       	ldi	r24, 0x26	; 38
+ 18c:	92 e0       	ldi	r25, 0x02	; 2
+ 18e:	09 d0       	rcall	.+18     	; 0x1a2 <strcmp>
+ 190:	89 2b       	or	r24, r25
+ 192:	11 f7       	brne	.-60     	; 0x158 <main+0x14>
 	 {
 		 increase -= 10;
- 19c:	0a 50       	subi	r16, 0x0A	; 10
- 19e:	11 09       	sbc	r17, r1
- 1a0:	db cf       	rjmp	.-74     	; 0x158 <main+0x14>
+ 194:	0a 50       	subi	r16, 0x0A	; 10
+ 196:	11 09       	sbc	r17, r1
+ 198:	df cf       	rjmp	.-66     	; 0x158 <main+0x14>
 
-000001a2 <initLEDport>:
-	if (led_nr <= MAX_LED_NR)
-	{
-		// Dan maske på basis af parameteren (led_nr)
-		mask = 0b00000001 << led_nr;
-		// Tænd den aktuelle lysdiode (de andre ændres ikke)
-		PORTB = PINB | mask;
- 1a2:	8f ef       	ldi	r24, 0xFF	; 255
- 1a4:	84 b9       	out	0x04, r24	; 4
- 1a6:	15 b8       	out	0x05, r1	; 5
- 1a8:	08 95       	ret
+0000019a <initLEDport>:
+#include <avr/io.h>
+#define MAX_LED_NR 7
 
-000001aa <turnOffLED>:
-void turnOffLED(unsigned char led_nr)
+void initLEDport()
 {
-	// Lokal variabel
-	unsigned char mask;
-	// Vi skal kun lave noget, hvis led_nr < 8
-	if (led_nr <= MAX_LED_NR)
- 1aa:	88 30       	cpi	r24, 0x08	; 8
- 1ac:	60 f4       	brcc	.+24     	; 0x1c6 <turnOffLED+0x1c>
-	{
-		// Dan maske på basis af parameteren (led_nr)
-		mask = ~0b00000001 << led_nr;
-		// Tænd den aktuelle lysdiode (de andre ændres ikke)
-		PORTB = PINB & mask;
- 1ae:	43 b1       	in	r20, 0x03	; 3
- 1b0:	2e ef       	ldi	r18, 0xFE	; 254
- 1b2:	3f ef       	ldi	r19, 0xFF	; 255
- 1b4:	b9 01       	movw	r22, r18
- 1b6:	02 c0       	rjmp	.+4      	; 0x1bc <turnOffLED+0x12>
- 1b8:	66 0f       	add	r22, r22
- 1ba:	77 1f       	adc	r23, r23
- 1bc:	8a 95       	dec	r24
- 1be:	e2 f7       	brpl	.-8      	; 0x1b8 <turnOffLED+0xe>
- 1c0:	cb 01       	movw	r24, r22
- 1c2:	84 23       	and	r24, r20
- 1c4:	85 b9       	out	0x05, r24	; 5
- 1c6:	08 95       	ret
+	DDRB = 0xFF; //PORTB til udgange
+ 19a:	8f ef       	ldi	r24, 0xFF	; 255
+ 19c:	84 b9       	out	0x04, r24	; 4
+	PORTB = 00000000;
+ 19e:	15 b8       	out	0x05, r1	; 5
+ 1a0:	08 95       	ret
 
-000001c8 <toggleLED>:
-void toggleLED(unsigned char led_nr)
-{
-	// Lokal variabel
-	unsigned char mask;
-	// Vi skal kun lave noget, hvis led_nr < 8
-	if (led_nr <= MAX_LED_NR)
- 1c8:	88 30       	cpi	r24, 0x08	; 8
- 1ca:	60 f4       	brcc	.+24     	; 0x1e4 <toggleLED+0x1c>
-	{
-		// Dan maske på basis af parameteren (led_nr)
-		mask = 0b00000001 << led_nr;
-		// Tænd den aktuelle lysdiode (de andre ændres ikke)
-		PORTB = PINB ^ mask;
- 1cc:	43 b1       	in	r20, 0x03	; 3
- 1ce:	21 e0       	ldi	r18, 0x01	; 1
- 1d0:	30 e0       	ldi	r19, 0x00	; 0
- 1d2:	b9 01       	movw	r22, r18
- 1d4:	02 c0       	rjmp	.+4      	; 0x1da <toggleLED+0x12>
- 1d6:	66 0f       	add	r22, r22
- 1d8:	77 1f       	adc	r23, r23
- 1da:	8a 95       	dec	r24
- 1dc:	e2 f7       	brpl	.-8      	; 0x1d6 <toggleLED+0xe>
- 1de:	cb 01       	movw	r24, r22
- 1e0:	84 27       	eor	r24, r20
- 1e2:	85 b9       	out	0x05, r24	; 5
- 1e4:	08 95       	ret
+000001a2 <strcmp>:
+ 1a2:	fb 01       	movw	r30, r22
+ 1a4:	dc 01       	movw	r26, r24
+ 1a6:	8d 91       	ld	r24, X+
+ 1a8:	01 90       	ld	r0, Z+
+ 1aa:	80 19       	sub	r24, r0
+ 1ac:	01 10       	cpse	r0, r1
+ 1ae:	d9 f3       	breq	.-10     	; 0x1a6 <strcmp+0x4>
+ 1b0:	99 0b       	sbc	r25, r25
+ 1b2:	08 95       	ret
 
-000001e6 <strcmp>:
- 1e6:	fb 01       	movw	r30, r22
- 1e8:	dc 01       	movw	r26, r24
- 1ea:	8d 91       	ld	r24, X+
- 1ec:	01 90       	ld	r0, Z+
- 1ee:	80 19       	sub	r24, r0
- 1f0:	01 10       	cpse	r0, r1
- 1f2:	d9 f3       	breq	.-10     	; 0x1ea <strcmp+0x4>
- 1f4:	99 0b       	sbc	r25, r25
- 1f6:	08 95       	ret
+000001b4 <_exit>:
+ 1b4:	f8 94       	cli
 
-000001f8 <_exit>:
- 1f8:	f8 94       	cli
-
-000001fa <__stop_program>:
- 1fa:	ff cf       	rjmp	.-2      	; 0x1fa <__stop_program>
+000001b6 <__stop_program>:
+ 1b6:	ff cf       	rjmp	.-2      	; 0x1b6 <__stop_program>

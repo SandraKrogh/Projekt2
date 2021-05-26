@@ -8,10 +8,8 @@
 
 #ifndef TID_H_
 #define TID_H_
-#include <stdbool.h>
 
-bool compareTimeStart(int, int, int);
-bool compareTimeStoop(int, int, int);
+int compareTimeStart(int, int, int);
 
 
 #endif /* TID_H_ */

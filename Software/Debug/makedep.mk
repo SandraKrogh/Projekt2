@@ -4,7 +4,7 @@
 
 main.c
 
-Source\computerApp.cpp
+Source\computerApp2.c
 
 Source\Fyldbadekar.c
 
@@ -18,5 +18,5 @@ Source\lys.c
 
 Source\Tid.c
 
-Source\uart.c
+Source\uart_1.c
 

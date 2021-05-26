@@ -11,24 +11,26 @@
 
 void taendlys()
 {
-	char startArray[] = {'0','1','0','1','0','1','1','0','/0'}; //tænd
-	char adresseArray[] = {'0','1','0','1','0','1','1','0','/0'}; 
+	toggleLED(5);
+	
+	char startArray[] = {'0','1','0','1','0','1','1','0'}; //tænd
+	char adresseArray[] = {'0','1','0','1','0','1','1','0'}; 
 	
 	sendX10(adresseArray, startArray);
 }
 
 void sluklys()
 {
-	char stopArray[] = {'0','1','0','1','1','0','0','1','/0'}; //stop
-	char adresseArray[] = {'0','1','0','1','0','1','1','0','/0'};
+	char stopArray[] = {'0','1','0','1','1','0','0','1'}; //stop
+	char adresseArray[] = {'0','1','0','1','0','1','1','0'};
 		
 	sendX10(adresseArray, stopArray);
 }
 
 void increaselys()
 {
-	char increaseArray[] = {'0','1','0','1','1','0','1','0','/0'}; //increase
-	char adresseArray[] = {'0','1','0','1','0','1','1','0','/0'};
+	char increaseArray[] = {'0','1','0','1','1','0','1','0'}; //increase
+	char adresseArray[] = {'0','1','0','1','0','1','1','0',};
 	
 	sendX10(adresseArray, increaseArray);
 }

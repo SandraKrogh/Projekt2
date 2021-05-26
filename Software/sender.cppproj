@@ -192,13 +192,13 @@
     <Compile Include="Header\Tid.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\uart.h">
+    <Compile Include="Header\uart_1.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\computerApp.cpp">
+    <Compile Include="Source\computerApp2.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\Fyldbadekar.c">
@@ -219,7 +219,7 @@
     <Compile Include="Source\Tid.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\uart.c">
+    <Compile Include="Source\uart_1.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

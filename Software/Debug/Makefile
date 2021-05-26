@@ -40,14 +40,14 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../main.c \
-../Source/computerApp.cpp \
+../Source/computerApp2.c \
 ../Source/Fyldbadekar.c \
 ../Source/init.c \
 ../Source/LED.c \
 ../Source/sendX10.c \
 ../Source/lys.c \
 ../Source/Tid.c \
-../Source/uart.c
+../Source/uart_1.c
 
 
 PREPROCESSING_SRCS += 
@@ -58,47 +58,47 @@ ASM_SRCS +=
 
 OBJS +=  \
 main.o \
-Source/computerApp.o \
+Source/computerApp2.o \
 Source/Fyldbadekar.o \
 Source/init.o \
 Source/LED.o \
 Source/sendX10.o \
 Source/lys.o \
 Source/Tid.o \
-Source/uart.o
+Source/uart_1.o
 
 OBJS_AS_ARGS +=  \
 main.o \
-Source/computerApp.o \
+Source/computerApp2.o \
 Source/Fyldbadekar.o \
 Source/init.o \
 Source/LED.o \
 Source/sendX10.o \
 Source/lys.o \
 Source/Tid.o \
-Source/uart.o
+Source/uart_1.o
 
 C_DEPS +=  \
 main.d \
-Source/computerApp.d \
+Source/computerApp2.d \
 Source/Fyldbadekar.d \
 Source/init.d \
 Source/LED.d \
 Source/sendX10.d \
 Source/lys.d \
 Source/Tid.d \
-Source/uart.d
+Source/uart_1.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
-Source/computerApp.d \
+Source/computerApp2.d \
 Source/Fyldbadekar.d \
 Source/init.d \
 Source/LED.d \
 Source/sendX10.d \
 Source/lys.d \
 Source/Tid.d \
-Source/uart.d
+Source/uart_1.d
 
 OUTPUT_FILE_PATH +=sender.elf
 
@@ -121,10 +121,10 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-Source/computerApp.o: ../Source/computerApp.cpp
+Source/computerApp2.o: ../Source/computerApp2.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
@@ -170,7 +170,7 @@ Source/Tid.o: ../Source/Tid.c
 	@echo Finished building: $<
 	
 
-Source/uart.o: ../Source/uart.c
+Source/uart_1.o: ../Source/uart_1.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

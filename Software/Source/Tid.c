@@ -6,7 +6,7 @@
  */ 
 #include <stdbool.h>
 
-bool compareTimeStart(int min, int hour, int RealTimeSek)
+int compareTimeStart(int min, int hour, int RealTimeSek)
 {
 	int RealTimeMin, WakeUpMin;
 	
@@ -21,10 +21,10 @@ bool compareTimeStart(int min, int hour, int RealTimeSek)
 	
 	if(RealTimeMin == WakeUpMin)
 	{
-		return true;
+		return 1;
 	}
 	else
 	
-	return false;
+	return 0;
 }
 

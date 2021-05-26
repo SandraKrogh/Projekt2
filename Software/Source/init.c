@@ -12,36 +12,25 @@
 void initTimer()
 {
 	//Lys Timer1 initiering
-	//normal mode 
-	TCNT1 = 49912;
-	TCCR1A = 0b00000000;
-	TCCR1B = 0b00000101; //prescale 1024
-	
+		//normal mode 
+		TCCR1A = 0b00000000;
+		TCCR1B = 0b00000100; //prescale 1024
+		TCNT1 = 3037; //49912
+		
 	//Lys timer 3 initiering
-	TCNT3 = 0;
-	TCCR3A = 0b00000000;
-	TCCR3B = 0b00000101; //prescale 1024
+		TCNT3 = 0;
+		TCCR3A = 0b00000000;
+		TCCR3B = 0b00000101; //prescale 1024
 }
 
 void initInterrupt()
 {
-	//Badekar interupt 2 
-	EIMSK |= 0b00000100;
-	EICRA = 0b00100000;
-	
-	//Lys interrupt 0 zeroCross
-	EICRA = 0b00000011;
-	EIMSK |= 0b00000001;
-	
-	//Lys interrupt 3 wait funktion
-	EICRA = 0b00000011;
-	EIMSK |= 0b00001000;
-	
-	//enables timer 3 interrupt wait funktion
-	TIMSK3 = 0b00001000;
+	//Lys interrupt(int2) + zeroCross(int0) + badekar(int1)
+	EICRA = 0b00101111;
+	EIMSK |= 0b00000111; //INT0 + INT2 enable
 	
 	//enables timer 1 interrupt 
-	TIMSK1 = 0b00000001;  //interrupt på overflow 
+	TIMSK1 |= 0b00000001;  //interrupt på overflow 
 }
 
 void initPort()
