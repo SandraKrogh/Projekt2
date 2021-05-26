@@ -9,10 +9,7 @@
 #ifndef INIT_H_
 #define INIT_H_
 
-
 void initInterrupt();
 void initPort();
-
-
 
 #endif /* INIT_H_ */

@@ -20,14 +20,42 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <EraseKey />
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <avrtoolserialnumber />
+    <avrdeviceexpectedsignature>0x1E9801</avrdeviceexpectedsignature>
+    <custom>
+      <ToolOptions>
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType>custom</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>Custom Programming Tool</ToolName>
+    </custom>
+    <avrtoolinterface />
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -149,7 +177,7 @@
     <Compile Include="Header\Fyldbadekar.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\Init.h">
+    <Compile Include="Header\Init1.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\LED.h">
@@ -158,10 +186,16 @@
     <Compile Include="Header\sendX10.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\taendlys.h">
+    <Compile Include="Header\lys.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\zeroCross.h">
+    <Compile Include="Header\Tid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\computerApp.cpp">
@@ -176,16 +210,16 @@
     <Compile Include="Source\LED.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\main.cpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Source\sendX10.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\taendlys.c">
+    <Compile Include="Source\lys.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\zeroCross.c">
+    <Compile Include="Source\Tid.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\uart.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

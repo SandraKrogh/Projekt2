@@ -9,6 +9,6 @@
 #define __COMPUTERAPP_H__
 
 int gethour();
-int getmin()const;
+int getmin();
 
 #endif //__COMPUTERAPP_H__

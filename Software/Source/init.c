@@ -4,12 +4,16 @@
  * Created: 10-05-2021 13:07:57
  *  Author: sandr
  */ 
-#include "Init.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <stdio.h>
+#include <string.h>
 
 void initTimer()
 {
 	//Lys Timer1 initiering
-	TCNT1 = 49912;
+	//normal mode 
+	TCNT1 = 49912; //har før haft 49912
 	TCCR1A = 0b00000000;
 	TCCR1B = 0b00000101; //prescale 1024
 	
@@ -17,9 +21,8 @@ void initTimer()
 	TCNT3 = 0;
 	TCCR3A = 0b00000000;
 	TCCR3B = 0b00000101; //prescale 1024
-	
-	
 }
+
 void initInterrupt()
 {
 	//Badekar interupt 2 
@@ -37,7 +40,7 @@ void initInterrupt()
 	//enables timer 3 interrupt wait funktion
 	TIMSK3 = 0b00001000;
 	
-	//enables timer 0 interrupt 
+	//enables timer 1 interrupt 
 	TIMSK1 = 0b00000001;  //interrupt på overflow 
 }
 
@@ -46,4 +49,7 @@ void initPort()
 	 //Port til udgang, x10 sender
 	 DDRA = 0xFF;
 	 PORTA = 00000000; 
+	 
+	 //zerocross
+	 DDRD = 0; //laver til indgang 
  }
