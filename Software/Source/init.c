@@ -13,7 +13,7 @@ void initTimer()
 {
 	//Lys Timer1 initiering
 	//normal mode 
-	TCNT1 = 63974; //har før haft 49912
+	TCNT1 = 49912; //har før haft 49912
 	TCCR1A = 0b00000000;
 	TCCR1B = 0b00000101; //prescale 1024
 	

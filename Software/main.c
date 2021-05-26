@@ -38,15 +38,9 @@ int increaseTime = 0;
 int main(void)
 {	
 	initLEDport();
-	//initInterrupt();
-	//initTimer();
+	initInterrupt();
+	initTimer();
 	initPort();
-	
-	//Lys Timer1 initiering
-	//normal mode
-	TCNT1 = 63974; //har før haft 49912
-	TCCR1A = 0b00000000;
-	TCCR1B = 0b00000101; //prescale 1024
 	
 	sei();//enable global interrupt 
 
@@ -54,16 +48,14 @@ int main(void)
 	
 	while(1) 
     {
-		toggleLED(7);
-		_delay_ms(1000);
 		//test af sekund tæller
-//  		if(sek %2 == 0)
-//  		{
-//  		turnOnLED(3);
-//  		_delay_ms(100);
-//  		}
-// 		else
-//  		turnOffLED(3);
+ 		if(sek %2 == 0)
+ 		{
+ 		turnOnLED(3);
+ 		_delay_ms(100);
+ 		}
+		else
+ 		turnOffLED(3);
 		
 // 		int min = getmin();
 // 		int hour = gethour();
@@ -100,7 +92,8 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 { 
   sek++;
-  if( sek > 10) //skal være 86400
+  
+  if( sek > 86500) 
   {
 	 toggleLED(3);
 	 sek=0;

@@ -60,7 +60,7 @@ void wait(int increase)
 {
 	for(unsigned int i=0; i < increase; i++)
 	{
-		_delay_ms(1);
+		_delay_ms(1); 
 		
 	}
 }
