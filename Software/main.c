@@ -51,11 +51,8 @@ int main(void)
 		//test af sekund tæller
  		if(sek %2 == 0)
  		{
- 		turnOnLED(3);
- 		_delay_ms(100);
+ 		toggleLED(4);
  		}
-		else
- 		turnOffLED(3);
 		
 // 		int min = getmin();
 // 		int hour = gethour();
