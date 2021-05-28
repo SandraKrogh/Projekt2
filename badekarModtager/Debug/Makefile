@@ -41,7 +41,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../main.c \
 ../Source/init.c \
-../Source/zeroCross.c
+../Source/LED.c
 
 
 PREPROCESSING_SRCS += 
@@ -53,22 +53,22 @@ ASM_SRCS +=
 OBJS +=  \
 main.o \
 Source/init.o \
-Source/zeroCross.o
+Source/LED.o
 
 OBJS_AS_ARGS +=  \
 main.o \
 Source/init.o \
-Source/zeroCross.o
+Source/LED.o
 
 C_DEPS +=  \
 main.d \
 Source/init.d \
-Source/zeroCross.d
+Source/LED.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
 Source/init.d \
-Source/zeroCross.d
+Source/LED.d
 
 OUTPUT_FILE_PATH +=badekarApp.elf
 
@@ -98,7 +98,7 @@ Source/init.o: ../Source/init.c
 	@echo Finished building: $<
 	
 
-Source/zeroCross.o: ../Source/zeroCross.c
+Source/LED.o: ../Source/LED.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

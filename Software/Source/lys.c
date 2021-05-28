@@ -13,14 +13,19 @@ void taendlys()
 {
 	toggleLED(5);
 	
+	SendString("Taend lys\r");
+	
 	char startArray[] = {'0','1','0','1','0','1','1','0'}; //tænd
 	char adresseArray[] = {'0','1','0','1','0','1','1','0'}; 
 	
 	sendX10(adresseArray, startArray);
+	
 }
 
 void sluklys()
 {
+	
+	SendString("Sluk lys\r");
 	char stopArray[] = {'0','1','0','1','1','0','0','1'}; //stop
 	char adresseArray[] = {'0','1','0','1','0','1','1','0'};
 		
@@ -29,8 +34,10 @@ void sluklys()
 
 void increaselys()
 {
+
+	SendString("increase lys\r");
 	char increaseArray[] = {'0','1','0','1','1','0','1','0'}; //increase
-	char adresseArray[] = {'0','1','0','1','0','1','1','0',};
+	char adresseArray[] = {'H','1','0','1','0','1','1','H'};
 	
 	sendX10(adresseArray, increaseArray);
 }

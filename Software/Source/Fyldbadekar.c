@@ -10,7 +10,6 @@
 
 void fyldbadekar()
 {
-	
 	toggleLED(7);
 	char Adresse[] = {'0','1','0','1','1','0','0','1'};
 	char startFunktion[] = {'0','1','0','1','0','1','1','0'};
@@ -18,7 +17,7 @@ void fyldbadekar()
 	
 	sendX10(Adresse,startFunktion); //tænd 
 	
-	_delay_ms(500);
-	
-	sendX10(Adresse,stopFunktion); //sluk
+// 	_delay_ms(5000);
+// 	
+// 	sendX10(Adresse,stopFunktion); //sluk
 }

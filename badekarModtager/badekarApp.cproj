@@ -116,16 +116,13 @@
     <Compile Include="Header\LED.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\zeroCross.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\init.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\zeroCross.c">
+    <Compile Include="Source\LED.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

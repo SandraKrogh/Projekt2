@@ -5,7 +5,6 @@
 **************************************************/
 #include <avr/io.h>
 #define MAX_LED_NR 7
-#include "LED.h"
 
 void initLEDport()
 {

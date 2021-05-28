@@ -21,13 +21,18 @@ void initTimer()
 		TCNT3 = 0;
 		TCCR3A = 0b00000000;
 		TCCR3B = 0b00000101; //prescale 1024
+		
+	//Lys CTS timer 
+	//timer 1
+	TCCR4A = 0b10000011;
+	TCCR4B = 0b00000001;//ingen prescale 
 }
 
 void initInterrupt()
 {
-	//Lys interrupt(int2) + zeroCross(int0) + badekar(int1)
-	EICRA = 0b00101111;
-	EIMSK |= 0b00000111; //INT0 + INT2 enable
+	//Lys interrupt(int2) + zeroCross(int0) + badekar(int3)
+	EICRA = 0b10100011;
+	EIMSK |= 0b00001101; //INT0 + INT2 enable + INT3
 	
 	//enables timer 1 interrupt 
 	TIMSK1 |= 0b00000001;  //interrupt på overflow 
@@ -35,9 +40,9 @@ void initInterrupt()
 
 void initPort()
  {
-	 //Port til udgang, x10 sender
-	 DDRA = 0xFF;
-	 PORTA = 00000000; 
+	 //Port til udgang, pwm
+	 DDRH = 0xFF;
+	 PORTH = 00000000; 
 	 
 	 //zerocross
 	 DDRD = 0; //laver til indgang 

@@ -33,10 +33,12 @@
 int getGlobalSek();
 
 //global variable declaration 
-volatile unsigned int sek= 0; 
+volatile unsigned int sek= 10; 
 int times= 0;
-int increaseTime = 0;
+volatile unsigned int increaseTime = 0;
 volatile unsigned int badekar_counter = 0;
+volatile unsigned int RealTimeSek = 0;
+volatile unsigned int status = 0;
 
 int main(void)
 {	
@@ -52,39 +54,36 @@ int main(void)
 	
 	int min = 0;
 	int hour = 0;
-	int RealTimeSek = 0;
-	int status = 0;
+	int alarmcounter=0;
+	
+	min = getmin();
+	hour = gethour();
 	
 	while(1) 
     {
-		//test af sekund tæller
-// 		if(sek %2 == 0)
-//  		{
-//  		toggleLED(5);
-// 		}
-		
-		min = getmin();
-		hour = gethour();
-	
 		RealTimeSek = getGlobalSek();
-	 
-		toggleLED(3);
 		  		
  		status=compareTimeStart(min,hour,RealTimeSek);
- 		 		
-		if(status == 1)
-		{
-			taendlys();
-			increaseTime = RealTimeSek;
-			times=0;
-		}
-		
-		if(RealTimeSek == increaseTime + 60  && times < 6 ) //1800 er en random værdi
-		{
-			increaselys();
-			increaseTime += 1800; 
-			times++; 
-		}
+		  		
+// 		if(status == 1 && alarmcounter == 0)
+// 		{
+// 			SendString("tandlys\r");
+// 			taendlys();
+// 			SendString("i main\r");
+// 			increaseTime = RealTimeSek;
+// 			times=0;
+// 			alarmcounter++;	
+// 		}
+// 		
+// 		if((RealTimeSek == (increaseTime + 120))  && times < 6 ) 
+// 		{
+// 			SendString("increase");
+// 			SendString("\r");
+// 			increaselys();
+// 			increaseTime += 1800; 
+// 			times++; 
+// 			alarmcounter = 0;
+// 		}
 // 		
 // 		if(times == 6)
 // 		{
@@ -92,7 +91,7 @@ int main(void)
 // 			times = 10;
 // 		}
 
-		if(badekar_counter > 0)
+		if(badekar_counter == 1)
 		{
 			fyldbadekar();
 			badekar_counter = 0;
@@ -105,17 +104,16 @@ ISR(TIMER1_OVF_vect)
 { 
   sek++;
   
-  if( sek > 86500) 
+  if( sek > 86500)  //24 timer
   {
 	 sek=0;
   }
 }
 
 //til badekaret 
-ISR(INT1_vect) 
+ISR(INT3_vect) 
 {
 	badekar_counter++;	
-	toggleLED(2);
 }
 
 

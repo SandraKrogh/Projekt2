@@ -15,22 +15,36 @@
 #include  <util/delay.h>
 
 volatile unsigned int g_counter = 0;
+volatile unsigned int counter = 0;
+volatile unsigned int x10_counter = 0;
 
-sendX10(char* adresse, char* data)
+void sendX10(char* adresse, char* data)
 {	
+	SendString("\rsend x10  ");
 	//send startsekvens 
-	char buffer2[16] = {0};
+	char buffer2[] = {'1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'};
 	
-	strcpy(buffer2,adresse); 
+	int for_counter=0;
 	
-	strcat(buffer2,data);
+	for( int i =4 ; i < 12; i++)
+	{
+		buffer2[i]=adresse[for_counter];
+		for_counter++;	
+	}
 	
+	for_counter = 0;
+	
+	for( int i = 12 ; i < 20; i++)
+	{
+		buffer2[i]=data[for_counter];
+		for_counter++;
+	}
+
 	//manchester kode ind i buffer
-	int counter = 0;
-	int x10_counter = 0;
 	g_counter = 0;
+	char c;
 	
-	while  (counter < 16) //tjekker om alle tegn er sendt
+	while  (counter < 20) //tjekker om alle tegn er sendt
 	{
 		PORTA &= 11111110;
 		
@@ -41,26 +55,30 @@ sendX10(char* adresse, char* data)
 		
  		x10_counter = g_counter;
 		
-		char c;
-		
 		c = buffer2[counter];
 		
 		//sætte ben højt, hvis c = 1
-		if(c==1)
+		if(c=='1')
 		{
-			PORTA |= 00000001;
+			turnOnLED(4);
+			OCR4A = 512;
+			_delay_us(10000);
+			OCR4A = 0;
 		}
 
-		//sætte ben højt, hvis c = 0
-		if(c==0)
-		{
-			PORTA &= 11111110;
-		}
+// 		//sætte ben højt, hvis c = 0
+// 		if(c==0)
+// 		{
+// 			//PORTA &= 11111110;
+// 		}
 		
 		SendChar(c);
 
 		counter++;
 	}
+	
+	counter = 0;
+
 }
 
 //zero cross
@@ -69,4 +87,5 @@ ISR(INT0_vect)
 	toggleLED(2);
 	g_counter++;
 }
+
 
