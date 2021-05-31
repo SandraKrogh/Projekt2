@@ -15,7 +15,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
-#include <string.h>
+#include <string.h> 
 
 #include "Header/Fyldbadekar.h"
 #include "Header/LED.h" 
@@ -65,31 +65,31 @@ int main(void)
 		  		
  		status=compareTimeStart(min,hour,RealTimeSek);
 		  		
-// 		if(status == 1 && alarmcounter == 0)
-// 		{
-// 			SendString("tandlys\r");
-// 			taendlys();
-// 			SendString("i main\r");
-// 			increaseTime = RealTimeSek;
-// 			times=0;
-// 			alarmcounter++;	
-// 		}
-// 		
-// 		if((RealTimeSek == (increaseTime + 120))  && times < 6 ) 
-// 		{
-// 			SendString("increase");
-// 			SendString("\r");
-// 			increaselys();
-// 			increaseTime += 1800; 
-// 			times++; 
-// 			alarmcounter = 0;
-// 		}
-// 		
-// 		if(times == 6)
-// 		{
-// 			sluklys();
-// 			times = 10;
-// 		}
+		if(status == 1 && alarmcounter == 0)
+		{
+			SendString("tandlys\r");
+			taendlys();
+			SendString("i main\r");
+			increaseTime = RealTimeSek;
+			times=0;
+			alarmcounter++;	
+		}
+		
+		if((RealTimeSek == (increaseTime + 300))  && times < 6 ) 
+		{
+			SendString("increase");
+			SendString("\r");
+			increaselys();
+			increaseTime += 1800; 
+			times++; 
+			alarmcounter = 0;
+		}
+		
+		if(times == 6)
+		{
+			sluklys();
+			times = 10;
+		}
 
 		if(badekar_counter == 1)
 		{

@@ -51,7 +51,6 @@ void sendX10(char* adresse, char* data)
 		while (x10_counter == g_counter) //tjekker om der er kommet zeroCross
 		{
 		}
-		//assert(x10_counter+1 == g_counter);
 		
  		x10_counter = g_counter;
 		
@@ -61,16 +60,21 @@ void sendX10(char* adresse, char* data)
 		if(c=='1')
 		{
 			turnOnLED(4);
-			OCR4A = 512;
-			_delay_us(10000);
-			OCR4A = 0;
+// 			OCR4A = 512;
+// 			_delay_us(10000);
+// 			OCR4A = 0;
+			PORTA |= 0b00000001;
 		}
+		
+		if(c=='0')
+		{
+					
+					// 			OCR4A = 512;
+					// 			_delay_us(10000);
+					// 			OCR4A = 0;
 
-// 		//sætte ben højt, hvis c = 0
-// 		if(c==0)
-// 		{
-// 			//PORTA &= 11111110;
-// 		}
+			PORTA &= 0b11111110;
+		}
 		
 		SendChar(c);
 

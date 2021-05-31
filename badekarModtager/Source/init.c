@@ -9,7 +9,7 @@
 void initInterrupt()
 {
 	//enables interrupt 0
-	EIMSK |= 0b00000001;
+	EIMSK |= 0b00000001;//enable 
 	EICRA = 0b00000011;
 	
 	//timer 1

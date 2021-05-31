@@ -3,31 +3,31 @@ badekarApp.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000020  00800200  0000034c  000003e0  2**0
+  0 .data         00000020  00800200  00000372  00000406  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000034c  00000000  00000000  00000094  2**1
+  1 .text         00000372  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000016  00800220  00800220  00000400  2**0
+  2 .bss          00000016  00800220  00800220  00000426  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000400  2**0
+  3 .comment      00000030  00000000  00000000  00000426  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000430  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000458  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000098  00000000  00000000  00000470  2**0
+  5 .debug_aranges 00000098  00000000  00000000  00000498  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001162  00000000  00000000  00000508  2**0
+  6 .debug_info   00001195  00000000  00000000  00000530  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d76  00000000  00000000  0000166a  2**0
+  7 .debug_abbrev 00000d76  00000000  00000000  000016c5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000593  00000000  00000000  000023e0  2**0
+  8 .debug_line   0000059f  00000000  00000000  0000243b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000124  00000000  00000000  00002974  2**2
+  9 .debug_frame  00000124  00000000  00000000  000029dc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000064a  00000000  00000000  00002a98  2**0
+ 10 .debug_str    0000064a  00000000  00000000  00002b00  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000035b  00000000  00000000  000030e2  2**0
+ 11 .debug_loc    0000035b  00000000  00000000  0000314a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000088  00000000  00000000  0000343d  2**0
+ 12 .debug_ranges 00000088  00000000  00000000  000034a5  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -162,7 +162,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ec e4       	ldi	r30, 0x4C	; 76
+  fa:	e2 e7       	ldi	r30, 0x72	; 114
   fc:	f3 e0       	ldi	r31, 0x03	; 3
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -187,7 +187,7 @@ Disassembly of section .text:
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	2a d0       	rcall	.+84     	; 0x174 <main>
- 120:	13 c1       	rjmp	.+550    	; 0x348 <_exit>
+ 120:	26 c1       	rjmp	.+588    	; 0x36e <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -272,11 +272,11 @@ int compare(char*, char*,int, int);
 int main(void)
 {
 	initLEDport();
- 174:	c7 d0       	rcall	.+398    	; 0x304 <initLEDport>
+ 174:	cb d0       	rcall	.+406    	; 0x30c <initLEDport>
 	initInterrupt();
- 176:	b8 d0       	rcall	.+368    	; 0x2e8 <initInterrupt>
+ 176:	bc d0       	rcall	.+376    	; 0x2f0 <initInterrupt>
 	initPort();
- 178:	c2 d0       	rcall	.+388    	; 0x2fe <initPort>
+ 178:	c6 d0       	rcall	.+396    	; 0x306 <initPort>
  17a:	78 94       	sei
 	
 	sei();
@@ -331,7 +331,7 @@ int main(void)
  1be:	87 e0       	ldi	r24, 0x07	; 7
 		{
 			turnOnLED(7);
- 1c0:	a5 d0       	rcall	.+330    	; 0x30c <turnOnLED>
+ 1c0:	a9 d0       	rcall	.+338    	; 0x314 <turnOnLED>
  1c2:	f7 01       	movw	r30, r14
  1c4:	d1 82       	std	Z+1, r13	; 0x01
 			OCR1A = 200; //duty cycle på 50%
@@ -344,7 +344,7 @@ int main(void)
  1cc:	87 e0       	ldi	r24, 0x07	; 7
 		{
 			turnOffLED(7);
- 1ce:	ad d0       	rcall	.+346    	; 0x32a <turnOffLED>
+ 1ce:	b1 d0       	rcall	.+354    	; 0x332 <turnOffLED>
  1d0:	f7 01       	movw	r30, r14
  1d2:	11 82       	std	Z+1, r1	; 0x01
 			OCR1A = 0; //duty cycle på 50%
@@ -377,239 +377,273 @@ ISR(INT0_vect)
  1f8:	bf 93       	push	r27
  1fa:	ef 93       	push	r30
  1fc:	ff 93       	push	r31
+	toggleLED(4);
+ 1fe:	84 e0       	ldi	r24, 0x04	; 4
+ 200:	a7 d0       	rcall	.+334    	; 0x350 <toggleLED>
 	
 	if(PINA == 00000001) //hvis 1
- 1fe:	80 b1       	in	r24, 0x00	; 0
- 200:	81 30       	cpi	r24, 0x01	; 1
- 202:	41 f4       	brne	.+16     	; 0x214 <__vector_1+0x3c>
+ 202:	80 b1       	in	r24, 0x00	; 0
+ 204:	81 30       	cpi	r24, 0x01	; 1
+ 206:	51 f4       	brne	.+20     	; 0x21c <__vector_1+0x44>
 	{
 		buffer[counter] = '1';
- 204:	e0 91 34 02 	lds	r30, 0x0234	; 0x800234 <counter>
- 208:	f0 91 35 02 	lds	r31, 0x0235	; 0x800235 <counter+0x1>
- 20c:	e0 5e       	subi	r30, 0xE0	; 224
- 20e:	fd 4f       	sbci	r31, 0xFD	; 253
- 210:	81 e3       	ldi	r24, 0x31	; 49
- 212:	80 83       	st	Z, r24
+ 208:	e0 91 34 02 	lds	r30, 0x0234	; 0x800234 <counter>
+ 20c:	f0 91 35 02 	lds	r31, 0x0235	; 0x800235 <counter+0x1>
+ 210:	e0 5e       	subi	r30, 0xE0	; 224
+ 212:	fd 4f       	sbci	r31, 0xFD	; 253
+ 214:	81 e3       	ldi	r24, 0x31	; 49
+ 216:	80 83       	st	Z, r24
+		toggleLED(6);
+ 218:	86 e0       	ldi	r24, 0x06	; 6
+ 21a:	9a d0       	rcall	.+308    	; 0x350 <toggleLED>
 	}
 	
 	if(PINA == 00000000) // hvis 0
- 214:	80 b1       	in	r24, 0x00	; 0
- 216:	81 11       	cpse	r24, r1
- 218:	08 c0       	rjmp	.+16     	; 0x22a <__vector_1+0x52>
+ 21c:	80 b1       	in	r24, 0x00	; 0
+ 21e:	81 11       	cpse	r24, r1
+ 220:	08 c0       	rjmp	.+16     	; 0x232 <__vector_1+0x5a>
 	{
 		buffer[counter] = '0';
- 21a:	e0 91 34 02 	lds	r30, 0x0234	; 0x800234 <counter>
- 21e:	f0 91 35 02 	lds	r31, 0x0235	; 0x800235 <counter+0x1>
- 222:	e0 5e       	subi	r30, 0xE0	; 224
- 224:	fd 4f       	sbci	r31, 0xFD	; 253
- 226:	80 e3       	ldi	r24, 0x30	; 48
- 228:	80 83       	st	Z, r24
+ 222:	e0 91 34 02 	lds	r30, 0x0234	; 0x800234 <counter>
+ 226:	f0 91 35 02 	lds	r31, 0x0235	; 0x800235 <counter+0x1>
+ 22a:	e0 5e       	subi	r30, 0xE0	; 224
+ 22c:	fd 4f       	sbci	r31, 0xFD	; 253
+ 22e:	80 e3       	ldi	r24, 0x30	; 48
+ 230:	80 83       	st	Z, r24
 	}
 	
 	counter++;
- 22a:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
- 22e:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
- 232:	01 96       	adiw	r24, 0x01	; 1
- 234:	90 93 35 02 	sts	0x0235, r25	; 0x800235 <counter+0x1>
- 238:	80 93 34 02 	sts	0x0234, r24	; 0x800234 <counter>
+ 232:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
+ 236:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
+ 23a:	01 96       	adiw	r24, 0x01	; 1
+ 23c:	90 93 35 02 	sts	0x0235, r25	; 0x800235 <counter+0x1>
+ 240:	80 93 34 02 	sts	0x0234, r24	; 0x800234 <counter>
 	
 	if( compare(buffer, array,0,4)!= 1 && counter == 4)
- 23c:	24 e0       	ldi	r18, 0x04	; 4
- 23e:	30 e0       	ldi	r19, 0x00	; 0
- 240:	40 e0       	ldi	r20, 0x00	; 0
- 242:	50 e0       	ldi	r21, 0x00	; 0
- 244:	60 e0       	ldi	r22, 0x00	; 0
- 246:	72 e0       	ldi	r23, 0x02	; 2
- 248:	80 e2       	ldi	r24, 0x20	; 32
- 24a:	92 e0       	ldi	r25, 0x02	; 2
- 24c:	6b df       	rcall	.-298    	; 0x124 <compare>
- 24e:	01 97       	sbiw	r24, 0x01	; 1
- 250:	c9 f0       	breq	.+50     	; 0x284 <__vector_1+0xac>
- 252:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
- 256:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
- 25a:	04 97       	sbiw	r24, 0x04	; 4
- 25c:	99 f4       	brne	.+38     	; 0x284 <__vector_1+0xac>
+ 244:	24 e0       	ldi	r18, 0x04	; 4
+ 246:	30 e0       	ldi	r19, 0x00	; 0
+ 248:	40 e0       	ldi	r20, 0x00	; 0
+ 24a:	50 e0       	ldi	r21, 0x00	; 0
+ 24c:	60 e0       	ldi	r22, 0x00	; 0
+ 24e:	72 e0       	ldi	r23, 0x02	; 2
+ 250:	80 e2       	ldi	r24, 0x20	; 32
+ 252:	92 e0       	ldi	r25, 0x02	; 2
+ 254:	67 df       	rcall	.-306    	; 0x124 <compare>
+ 256:	01 97       	sbiw	r24, 0x01	; 1
+ 258:	c9 f0       	breq	.+50     	; 0x28c <__vector_1+0xb4>
+ 25a:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
+ 25e:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
+ 262:	04 97       	sbiw	r24, 0x04	; 4
+ 264:	99 f4       	brne	.+38     	; 0x28c <__vector_1+0xb4>
 	{
 		for(int i = 0; i < 4; i++)
 		{
 			buffer[i] = buffer[i+1];
- 25e:	e0 e2       	ldi	r30, 0x20	; 32
- 260:	f2 e0       	ldi	r31, 0x02	; 2
- 262:	81 81       	ldd	r24, Z+1	; 0x01
- 264:	80 83       	st	Z, r24
- 266:	82 81       	ldd	r24, Z+2	; 0x02
- 268:	81 83       	std	Z+1, r24	; 0x01
- 26a:	83 81       	ldd	r24, Z+3	; 0x03
- 26c:	82 83       	std	Z+2, r24	; 0x02
- 26e:	84 81       	ldd	r24, Z+4	; 0x04
- 270:	83 83       	std	Z+3, r24	; 0x03
+ 266:	e0 e2       	ldi	r30, 0x20	; 32
+ 268:	f2 e0       	ldi	r31, 0x02	; 2
+ 26a:	81 81       	ldd	r24, Z+1	; 0x01
+ 26c:	80 83       	st	Z, r24
+ 26e:	82 81       	ldd	r24, Z+2	; 0x02
+ 270:	81 83       	std	Z+1, r24	; 0x01
+ 272:	83 81       	ldd	r24, Z+3	; 0x03
+ 274:	82 83       	std	Z+2, r24	; 0x02
+ 276:	84 81       	ldd	r24, Z+4	; 0x04
+ 278:	83 83       	std	Z+3, r24	; 0x03
 		}
 		counter--;
- 272:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
- 276:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
- 27a:	01 97       	sbiw	r24, 0x01	; 1
- 27c:	90 93 35 02 	sts	0x0235, r25	; 0x800235 <counter+0x1>
- 280:	80 93 34 02 	sts	0x0234, r24	; 0x800234 <counter>
+ 27a:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
+ 27e:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
+ 282:	01 97       	sbiw	r24, 0x01	; 1
+ 284:	90 93 35 02 	sts	0x0235, r25	; 0x800235 <counter+0x1>
+ 288:	80 93 34 02 	sts	0x0234, r24	; 0x800234 <counter>
 	}
 	
 	if( counter == 11)
- 284:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
- 288:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
- 28c:	0b 97       	sbiw	r24, 0x0b	; 11
- 28e:	79 f4       	brne	.+30     	; 0x2ae <__vector_1+0xd6>
+ 28c:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
+ 290:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
+ 294:	0b 97       	sbiw	r24, 0x0b	; 11
+ 296:	79 f4       	brne	.+30     	; 0x2b6 <__vector_1+0xde>
 	{
 		if(compare(buffer,adresse,4,8)==0)
- 290:	28 e0       	ldi	r18, 0x08	; 8
- 292:	30 e0       	ldi	r19, 0x00	; 0
- 294:	44 e0       	ldi	r20, 0x04	; 4
- 296:	50 e0       	ldi	r21, 0x00	; 0
- 298:	65 e0       	ldi	r22, 0x05	; 5
- 29a:	72 e0       	ldi	r23, 0x02	; 2
- 29c:	80 e2       	ldi	r24, 0x20	; 32
- 29e:	92 e0       	ldi	r25, 0x02	; 2
- 2a0:	41 df       	rcall	.-382    	; 0x124 <compare>
- 2a2:	89 2b       	or	r24, r25
- 2a4:	21 f4       	brne	.+8      	; 0x2ae <__vector_1+0xd6>
+ 298:	28 e0       	ldi	r18, 0x08	; 8
+ 29a:	30 e0       	ldi	r19, 0x00	; 0
+ 29c:	44 e0       	ldi	r20, 0x04	; 4
+ 29e:	50 e0       	ldi	r21, 0x00	; 0
+ 2a0:	65 e0       	ldi	r22, 0x05	; 5
+ 2a2:	72 e0       	ldi	r23, 0x02	; 2
+ 2a4:	80 e2       	ldi	r24, 0x20	; 32
+ 2a6:	92 e0       	ldi	r25, 0x02	; 2
+ 2a8:	3d df       	rcall	.-390    	; 0x124 <compare>
+ 2aa:	89 2b       	or	r24, r25
+ 2ac:	21 f4       	brne	.+8      	; 0x2b6 <__vector_1+0xde>
 		
 		counter = 0;
- 2a6:	10 92 35 02 	sts	0x0235, r1	; 0x800235 <counter+0x1>
- 2aa:	10 92 34 02 	sts	0x0234, r1	; 0x800234 <counter>
+ 2ae:	10 92 35 02 	sts	0x0235, r1	; 0x800235 <counter+0x1>
+ 2b2:	10 92 34 02 	sts	0x0234, r1	; 0x800234 <counter>
 	}
 	
 	if (counter > 19)
- 2ae:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
- 2b2:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
- 2b6:	44 97       	sbiw	r24, 0x14	; 20
- 2b8:	20 f0       	brcs	.+8      	; 0x2c2 <__vector_1+0xea>
+ 2b6:	80 91 34 02 	lds	r24, 0x0234	; 0x800234 <counter>
+ 2ba:	90 91 35 02 	lds	r25, 0x0235	; 0x800235 <counter+0x1>
+ 2be:	44 97       	sbiw	r24, 0x14	; 20
+ 2c0:	20 f0       	brcs	.+8      	; 0x2ca <__vector_1+0xf2>
 	{
 		counter = 0;
- 2ba:	10 92 35 02 	sts	0x0235, r1	; 0x800235 <counter+0x1>
- 2be:	10 92 34 02 	sts	0x0234, r1	; 0x800234 <counter>
+ 2c2:	10 92 35 02 	sts	0x0235, r1	; 0x800235 <counter+0x1>
+ 2c6:	10 92 34 02 	sts	0x0234, r1	; 0x800234 <counter>
 	}
 }
- 2c2:	ff 91       	pop	r31
- 2c4:	ef 91       	pop	r30
- 2c6:	bf 91       	pop	r27
- 2c8:	af 91       	pop	r26
- 2ca:	9f 91       	pop	r25
- 2cc:	8f 91       	pop	r24
- 2ce:	7f 91       	pop	r23
- 2d0:	6f 91       	pop	r22
- 2d2:	5f 91       	pop	r21
- 2d4:	4f 91       	pop	r20
- 2d6:	3f 91       	pop	r19
- 2d8:	2f 91       	pop	r18
- 2da:	0f 90       	pop	r0
- 2dc:	0b be       	out	0x3b, r0	; 59
- 2de:	0f 90       	pop	r0
- 2e0:	0f be       	out	0x3f, r0	; 63
+ 2ca:	ff 91       	pop	r31
+ 2cc:	ef 91       	pop	r30
+ 2ce:	bf 91       	pop	r27
+ 2d0:	af 91       	pop	r26
+ 2d2:	9f 91       	pop	r25
+ 2d4:	8f 91       	pop	r24
+ 2d6:	7f 91       	pop	r23
+ 2d8:	6f 91       	pop	r22
+ 2da:	5f 91       	pop	r21
+ 2dc:	4f 91       	pop	r20
+ 2de:	3f 91       	pop	r19
+ 2e0:	2f 91       	pop	r18
  2e2:	0f 90       	pop	r0
- 2e4:	1f 90       	pop	r1
- 2e6:	18 95       	reti
+ 2e4:	0b be       	out	0x3b, r0	; 59
+ 2e6:	0f 90       	pop	r0
+ 2e8:	0f be       	out	0x3f, r0	; 63
+ 2ea:	0f 90       	pop	r0
+ 2ec:	1f 90       	pop	r1
+ 2ee:	18 95       	reti
 
-000002e8 <initInterrupt>:
+000002f0 <initInterrupt>:
 #include <avr/io.h>
 
 void initInterrupt()
 {
 	//enables interrupt 0
-	EIMSK |= 0b00000001;
- 2e8:	e8 9a       	sbi	0x1d, 0	; 29
+	EIMSK |= 0b00000001;//enable 
+ 2f0:	e8 9a       	sbi	0x1d, 0	; 29
 	EICRA = 0b00000011;
- 2ea:	83 e0       	ldi	r24, 0x03	; 3
- 2ec:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x700069>
+ 2f2:	83 e0       	ldi	r24, 0x03	; 3
+ 2f4:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x700069>
 	
 	//timer 1
 	TCCR1A = 0b10000011;
- 2f0:	83 e8       	ldi	r24, 0x83	; 131
- 2f2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x700080>
+ 2f8:	83 e8       	ldi	r24, 0x83	; 131
+ 2fa:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x700080>
 	TCCR1B = 0b00000001;
- 2f6:	81 e0       	ldi	r24, 0x01	; 1
- 2f8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x700081>
- 2fc:	08 95       	ret
+ 2fe:	81 e0       	ldi	r24, 0x01	; 1
+ 300:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x700081>
+ 304:	08 95       	ret
 
-000002fe <initPort>:
+00000306 <initPort>:
 }
 
 void initPort()
 {
 	//Port til indgange, x10 modtager
 	DDRA = 0;
- 2fe:	11 b8       	out	0x01, r1	; 1
+ 306:	11 b8       	out	0x01, r1	; 1
 	PINA = 00000000;
- 300:	10 b8       	out	0x00, r1	; 0
- 302:	08 95       	ret
+ 308:	10 b8       	out	0x00, r1	; 0
+ 30a:	08 95       	ret
 
-00000304 <initLEDport>:
+0000030c <initLEDport>:
 }
 
 void writeAllLEDs(unsigned char pattern)
 {
 	// Hent parameteren og skriv til lysdioderne
 	PORTB = pattern;
- 304:	8f ef       	ldi	r24, 0xFF	; 255
- 306:	84 b9       	out	0x04, r24	; 4
- 308:	15 b8       	out	0x05, r1	; 5
- 30a:	08 95       	ret
+ 30c:	8f ef       	ldi	r24, 0xFF	; 255
+ 30e:	84 b9       	out	0x04, r24	; 4
+ 310:	15 b8       	out	0x05, r1	; 5
+ 312:	08 95       	ret
 
-0000030c <turnOnLED>:
+00000314 <turnOnLED>:
 void turnOnLED(unsigned char led_nr)
 {
 	// Lokal variabel
 	unsigned char mask;
 	// Vi skal kun lave noget, hvis led_nr < 8
 	if (led_nr <= MAX_LED_NR)
- 30c:	88 30       	cpi	r24, 0x08	; 8
- 30e:	60 f4       	brcc	.+24     	; 0x328 <turnOnLED+0x1c>
+ 314:	88 30       	cpi	r24, 0x08	; 8
+ 316:	60 f4       	brcc	.+24     	; 0x330 <turnOnLED+0x1c>
 	{
 		// Dan maske på basis af parameteren (led_nr)
 		mask = 0b00000001 << led_nr;
 		// Tænd den aktuelle lysdiode (de andre ændres ikke)
 		PORTB = PINB | mask;
- 310:	43 b1       	in	r20, 0x03	; 3
- 312:	21 e0       	ldi	r18, 0x01	; 1
- 314:	30 e0       	ldi	r19, 0x00	; 0
- 316:	b9 01       	movw	r22, r18
- 318:	02 c0       	rjmp	.+4      	; 0x31e <turnOnLED+0x12>
- 31a:	66 0f       	add	r22, r22
- 31c:	77 1f       	adc	r23, r23
- 31e:	8a 95       	dec	r24
- 320:	e2 f7       	brpl	.-8      	; 0x31a <turnOnLED+0xe>
- 322:	cb 01       	movw	r24, r22
- 324:	84 2b       	or	r24, r20
- 326:	85 b9       	out	0x05, r24	; 5
- 328:	08 95       	ret
+ 318:	43 b1       	in	r20, 0x03	; 3
+ 31a:	21 e0       	ldi	r18, 0x01	; 1
+ 31c:	30 e0       	ldi	r19, 0x00	; 0
+ 31e:	b9 01       	movw	r22, r18
+ 320:	02 c0       	rjmp	.+4      	; 0x326 <turnOnLED+0x12>
+ 322:	66 0f       	add	r22, r22
+ 324:	77 1f       	adc	r23, r23
+ 326:	8a 95       	dec	r24
+ 328:	e2 f7       	brpl	.-8      	; 0x322 <turnOnLED+0xe>
+ 32a:	cb 01       	movw	r24, r22
+ 32c:	84 2b       	or	r24, r20
+ 32e:	85 b9       	out	0x05, r24	; 5
+ 330:	08 95       	ret
 
-0000032a <turnOffLED>:
+00000332 <turnOffLED>:
 void turnOffLED(unsigned char led_nr)
 {
 	// Lokal variabel
 	unsigned char mask;
 	// Vi skal kun lave noget, hvis led_nr < 8
 	if (led_nr <= MAX_LED_NR)
- 32a:	88 30       	cpi	r24, 0x08	; 8
- 32c:	60 f4       	brcc	.+24     	; 0x346 <turnOffLED+0x1c>
+ 332:	88 30       	cpi	r24, 0x08	; 8
+ 334:	60 f4       	brcc	.+24     	; 0x34e <turnOffLED+0x1c>
 	{
 		// Dan maske på basis af parameteren (led_nr)
 		mask = ~0b00000001 << led_nr;
 		// Tænd den aktuelle lysdiode (de andre ændres ikke)
 		PORTB = PINB & mask;
- 32e:	43 b1       	in	r20, 0x03	; 3
- 330:	2e ef       	ldi	r18, 0xFE	; 254
- 332:	3f ef       	ldi	r19, 0xFF	; 255
- 334:	b9 01       	movw	r22, r18
- 336:	02 c0       	rjmp	.+4      	; 0x33c <turnOffLED+0x12>
- 338:	66 0f       	add	r22, r22
- 33a:	77 1f       	adc	r23, r23
- 33c:	8a 95       	dec	r24
- 33e:	e2 f7       	brpl	.-8      	; 0x338 <turnOffLED+0xe>
- 340:	cb 01       	movw	r24, r22
- 342:	84 23       	and	r24, r20
- 344:	85 b9       	out	0x05, r24	; 5
- 346:	08 95       	ret
+ 336:	43 b1       	in	r20, 0x03	; 3
+ 338:	2e ef       	ldi	r18, 0xFE	; 254
+ 33a:	3f ef       	ldi	r19, 0xFF	; 255
+ 33c:	b9 01       	movw	r22, r18
+ 33e:	02 c0       	rjmp	.+4      	; 0x344 <turnOffLED+0x12>
+ 340:	66 0f       	add	r22, r22
+ 342:	77 1f       	adc	r23, r23
+ 344:	8a 95       	dec	r24
+ 346:	e2 f7       	brpl	.-8      	; 0x340 <turnOffLED+0xe>
+ 348:	cb 01       	movw	r24, r22
+ 34a:	84 23       	and	r24, r20
+ 34c:	85 b9       	out	0x05, r24	; 5
+ 34e:	08 95       	ret
 
-00000348 <_exit>:
- 348:	f8 94       	cli
+00000350 <toggleLED>:
+void toggleLED(unsigned char led_nr)
+{
+	// Lokal variabel
+	unsigned char mask;
+	// Vi skal kun lave noget, hvis led_nr < 8
+	if (led_nr <= MAX_LED_NR)
+ 350:	88 30       	cpi	r24, 0x08	; 8
+ 352:	60 f4       	brcc	.+24     	; 0x36c <toggleLED+0x1c>
+	{
+		// Dan maske på basis af parameteren (led_nr)
+		mask = 0b00000001 << led_nr;
+		// Tænd den aktuelle lysdiode (de andre ændres ikke)
+		PORTB = PINB ^ mask;
+ 354:	43 b1       	in	r20, 0x03	; 3
+ 356:	21 e0       	ldi	r18, 0x01	; 1
+ 358:	30 e0       	ldi	r19, 0x00	; 0
+ 35a:	b9 01       	movw	r22, r18
+ 35c:	02 c0       	rjmp	.+4      	; 0x362 <toggleLED+0x12>
+ 35e:	66 0f       	add	r22, r22
+ 360:	77 1f       	adc	r23, r23
+ 362:	8a 95       	dec	r24
+ 364:	e2 f7       	brpl	.-8      	; 0x35e <toggleLED+0xe>
+ 366:	cb 01       	movw	r24, r22
+ 368:	84 27       	eor	r24, r20
+ 36a:	85 b9       	out	0x05, r24	; 5
+ 36c:	08 95       	ret
 
-0000034a <__stop_program>:
- 34a:	ff cf       	rjmp	.-2      	; 0x34a <__stop_program>
+0000036e <_exit>:
+ 36e:	f8 94       	cli
+
+00000370 <__stop_program>:
+ 370:	ff cf       	rjmp	.-2      	; 0x370 <__stop_program>

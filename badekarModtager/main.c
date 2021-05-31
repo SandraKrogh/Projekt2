@@ -75,10 +75,12 @@ int compare(char* buffer, char* konstant, int startc, int slutc)
 
 ISR(INT0_vect)
 {
+	toggleLED(4);
 	
 	if(PINA == 00000001) //hvis 1
 	{
 		buffer[counter] = '1';
+		toggleLED(6);
 	}
 	
 	if(PINA == 00000000) // hvis 0
