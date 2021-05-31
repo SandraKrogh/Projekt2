@@ -44,8 +44,8 @@ void initPort()
 	 DDRH = 0xFF;
 	 PORTH = 00000000; 
 	 
-	 	 //Port til udgang, pwm
-	  DDRA = 0xFF;
+	 //Port til udgang, pwm
+	 DDRA = 0xFF;
 	 PORTA = 00000000;
 	 
 	 //zerocross
